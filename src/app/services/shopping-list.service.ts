@@ -16,7 +16,11 @@ export class ShoppingListService {
    }
 
    addIngredient(ingredient: Ingredient) {
-      this.ingredients.push(ingredient);
+      this.addIngredients([ingredient]);
+   }
+
+   addIngredients(ingredients: Ingredient[]) {
+      this.ingredients.push(...ingredients);
       this.ingredientsChanged.emit(this.getIngredients());
    }
 }
