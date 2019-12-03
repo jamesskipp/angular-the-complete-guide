@@ -8,6 +8,7 @@ export class ClickLoggerDirective {
 
    @Input('clickLogger') _elementLabelShorthand: string;
    @Input('elementLabel') _elementLabel: string;
+   @Input('loggerData') data: object;
 
    constructor(private loggingService: LoggingService,
       private vc: ViewContainerRef) { }
@@ -27,7 +28,8 @@ export class ClickLoggerDirective {
          label: this.elementLabel,
          component: this.component,
          time: Date.now(),
-         user: null
+         user: null,
+         data: this.data
       });
    }
 }

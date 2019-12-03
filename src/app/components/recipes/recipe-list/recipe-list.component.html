@@ -10,6 +10,8 @@
          <li class="list-group-item pointer"
             *ngFor="let recipe of recipes"
             routerLinkActive="active"
+            [clickLogger]="'Link to Recipe '+ recipe.id"
+            [loggerData]="recipe"
             [routerLink]="recipe.id">
             <app-recipe-item [recipe]="recipe"></app-recipe-item>
          </li>
