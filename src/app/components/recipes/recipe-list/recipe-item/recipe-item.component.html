@@ -1,9 +1,9 @@
-<a class="list-group-item clearfix pointer">
+<div class="clearfix pointer">
    <div class="pull-left">
       <h4 class="list-group-item-heading"
          [textContent]="recipe.name"></h4>
       <p class="list-group-item-text"
-         [textContent]="recipe.description"></p>
+         [textContent]="recipe.description | truncate:[45]"></p>
    </div>
    <span class="pull-right">
       <img [src]="recipe.imagePath"
@@ -11,4 +11,4 @@
          class="img-responsive"
          style="max-height: 50px;">
    </span>
-</a>
+</div>

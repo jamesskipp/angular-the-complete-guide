@@ -14,6 +14,8 @@ import { ClickLoggerDirective } from './directives/logging/click-logger.directiv
 import { MouseoverLoggerDirective } from './directives/logging/mouseover-logger.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 @NgModule({
    declarations: [
@@ -28,7 +30,9 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
       DropdownDirective,
       ClickLoggerDirective,
       MouseoverLoggerDirective,
-      RecipeStartComponent
+      RecipeStartComponent,
+      TruncatePipe,
+      RecipeEditComponent
    ],
    imports: [
       BrowserModule,
