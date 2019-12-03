@@ -13,9 +13,9 @@ import { DropdownDirective } from './directives/dropdown/dropdown.directive';
 import { ClickLoggerDirective } from './directives/logging/click-logger.directive';
 import { MouseoverLoggerDirective } from './directives/logging/mouseover-logger.directive';
 import { AppRoutingModule } from './app-routing.module';
-import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
+import { RecipeStartComponent } from './components/recipes/recipe-start/recipe-start.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
 
 @NgModule({
    declarations: [
