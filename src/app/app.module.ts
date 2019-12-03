@@ -13,6 +13,7 @@ import { DropdownDirective } from './directives/dropdown/dropdown.directive';
 import { ClickLoggerDirective } from './directives/logging/click-logger.directive';
 import { MouseoverLoggerDirective } from './directives/logging/mouseover-logger.directive';
 import { AppRoutingModule } from './app-routing.module';
+import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 
 @NgModule({
    declarations: [
@@ -26,7 +27,8 @@ import { AppRoutingModule } from './app-routing.module';
       ShoppingEditComponent,
       DropdownDirective,
       ClickLoggerDirective,
-      MouseoverLoggerDirective
+      MouseoverLoggerDirective,
+      RecipeStartComponent
    ],
    imports: [
       BrowserModule,
