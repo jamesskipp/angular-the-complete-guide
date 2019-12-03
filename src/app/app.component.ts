@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ng4-complete-guide';
+
+   component: string = 'recipes';
+
+   onCatchNavigate(component) {
+      this.component = component;
+   }
 }
