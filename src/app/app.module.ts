@@ -12,11 +12,11 @@ import { RecipesComponent } from './components/recipes/recipes.component';
 import { ShoppingEditComponent } from './components/shopping-list/shopping-edit/shopping-edit.component';
 import { DropdownDirective } from './directives/dropdown/dropdown.directive';
 import { ClickLoggerDirective } from './directives/logging/click-logger.directive';
-import { MouseoverLoggerDirective } from './directives/logging/mouseover-logger.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './components/recipes/recipe-start/recipe-start.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
+import { IngredientDetailComponent } from './components/ingredients/ingredient-detail/ingredient-detail.component';
 
 @NgModule({
    declarations: [
@@ -30,10 +30,10 @@ import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edi
       ShoppingEditComponent,
       DropdownDirective,
       ClickLoggerDirective,
-      MouseoverLoggerDirective,
       RecipeStartComponent,
       TruncatePipe,
-      RecipeEditComponent
+      RecipeEditComponent,
+      IngredientDetailComponent
    ],
    imports: [
       BrowserModule,

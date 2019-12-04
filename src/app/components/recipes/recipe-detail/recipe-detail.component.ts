@@ -19,7 +19,7 @@ export class RecipeDetailComponent implements OnInit {
 
    ngOnInit() {
       this.route.params.subscribe((params) => {
-         this.setRecipe(+params.id);
+         this.setRecipe(params.id);
       });
    }
 
@@ -27,8 +27,10 @@ export class RecipeDetailComponent implements OnInit {
       this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
    }
 
-   setRecipe(id: number) {
-      this.recipe = this.recipeService.getRecipes().find((recipe) => recipe.id === id);
+   setRecipe(id: string) {
+      this.recipeService.fetchRecipe(id).subscribe((recipe: Recipe) => {
+         this.recipe = recipe;
+      });
    }
 
 }

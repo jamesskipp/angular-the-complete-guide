@@ -11,6 +11,7 @@ export class LoggingService {
 
    readonly RECIPEBOOK = RestAPIConstants.URL_RECIPEBOOK_API;
    readonly BATCH_PERIOD = 60 * 1000;
+   readonly BATCH_SIZE = 50;
 
    constructor(private http: HttpClient) {
       // Batch Post every minute
@@ -20,33 +21,56 @@ export class LoggingService {
 
       // Batch Post on exiting application
       window.onbeforeunload = () => {
-         this.processEvents();
+         this.processEvents(false);
          return true;
-       };
+      };
    }
 
-   processEvents() {
+   processEvents(batch: boolean = true) {
       if (this.events.length) {
-         this.postEvents();
+         this.postEvents(batch);
       }
    }
 
-   addEvent(event) {
-      this.events.push(event);
-   }
+   postEvents(batch: boolean = true): Observable<any> {
+      let events: WebAppEvent[];
+      if (batch) {
+         events = this.events.splice(Math.max(0, this.events.length - this.BATCH_SIZE), this.BATCH_SIZE);
+      } else {
+         events = this.events;
+      }
 
-   postEvents(): Observable<any> {
-      console.debug(`Batching ${this.events.length} WebAppEvents...`);
+      console.debug(`Batching ${events.length} WebAppEvents...`);
       const postEvents$ = this.http.post(
          this.RECIPEBOOK.BASE + this.RECIPEBOOK.EVENT,
-         this.events
+         events
       )
-      postEvents$.subscribe((data) => {         
-         console.debug(`Successfully Batched ${this.events.length} WebAppEvents`);
-         this.events = [];
+      postEvents$.subscribe((data) => {
+         console.debug(`Successfully Batched ${events.length} WebAppEvents`);
       }, (error) => {
          console.error(error);
+         if (batch) {
+            this.events.splice(this.events.length, 0, ...events);            
+         }
       });
       return postEvents$;
+   }
+
+   addEvent({
+      action,
+      label,
+      component,
+      time,
+      user,
+      data
+   }) {
+      this.events.push(new WebAppEvent(
+         action,
+         label,
+         component,
+         time,
+         user,
+         data,
+      ));
    }
 }
