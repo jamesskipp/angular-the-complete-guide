@@ -7,7 +7,7 @@
             style="cursor: pointer"
             class="list-group-item"
             (click)="onClickEditItem(i)">
-            {{ ingredient.name }}  ({{ ingredient.amount }})
+            <app-ingredient-detail [ingredient]="ingredient"></app-ingredient-detail>
          </a>
       </div>
    </div>
