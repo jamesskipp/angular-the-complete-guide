@@ -47,9 +47,11 @@
                      type="submit"
                      clickLogger="Submit Ingredients Button"
                      [disabled]="!f.valid">{{ editMode ? 'Save' : 'Add' }}</button>
-                  <button class="btn btn-danger"
+                  <button *ngIf="editMode"
+                     class="btn btn-danger"
                      clickLogger="Delete Ingredient Button"
-                     type="button">Delete</button>
+                     type="button"
+                     (click)="onClickDelete()">Delete</button>
                   <button class="btn btn-primary"
                      clickLogger="Clear Ingredients Form Button"
                      type="button"
