@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { FormGroup, FormControl, Validators, FormControlDirective } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormControlDirective, FormArray } from '@angular/forms';
 import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
@@ -18,7 +18,6 @@ export class RecipeEditComponent implements OnInit {
       private route: ActivatedRoute,
       private recipeService: RecipeService
    ) { }
-
 
    ngOnInit() {
       this.route.params.subscribe((params: Params) => {
@@ -45,6 +44,14 @@ export class RecipeEditComponent implements OnInit {
          imagePath: new FormControl(recipeImagePath),
          description: new FormControl(recipeDescription)
       });
+   }
+
+   onSubmit() {
+      console.log(this.recipeForm);
+   }
+
+   get controls() {
+      return (<FormArray>this.recipeForm.get('ingredients')).controls;
    }
 
 }
