@@ -18,8 +18,12 @@ export class RecipeService {
       private http: HttpClient
    ) { }
 
-   getRecipes() {
+   getRecipes(): Recipe[] {
       return this.recipes.slice();
+   }
+
+   getRecipe(id: number): Recipe {
+      return this.getRecipes()[id];
    }
 
    addIngredientsToShoppingList(ingredients: Ingredient[]) {
