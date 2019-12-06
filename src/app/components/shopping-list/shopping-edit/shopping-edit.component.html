@@ -45,11 +45,15 @@
                <div class="btn-toolbar">
                   <button class="btn btn-success"
                      type="submit"
+                     clickLogger="Submit Ingredients Button"
                      [disabled]="!f.valid">{{ editMode ? 'Save' : 'Add' }}</button>
                   <button class="btn btn-danger"
+                     clickLogger="Delete Ingredient Button"
                      type="button">Delete</button>
                   <button class="btn btn-primary"
-                     type="button">Clear</button>
+                     clickLogger="Clear Ingredients Form Button"
+                     type="button"
+                     (click)="onClickClear()">Clear</button>
                </div>
             </div>
          </div>

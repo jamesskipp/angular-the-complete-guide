@@ -20,10 +20,9 @@ export class LoggingService {
       }, this.BATCH_PERIOD);
 
       // Batch Post on exiting application
-      window.onbeforeunload = () => {
+      window.addEventListener('beforeunload', () => {
          this.processEvents(false);
-         return true;
-      };
+      });
    }
 
    processEvents(batch: boolean = true) {
@@ -50,7 +49,7 @@ export class LoggingService {
       }, (error) => {
          console.error(error);
          if (batch) {
-            this.events.splice(this.events.length, 0, ...events);            
+            this.events.splice(this.events.length, 0, ...events);
          }
       });
       return postEvents$;
