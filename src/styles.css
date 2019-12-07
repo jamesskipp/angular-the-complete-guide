@@ -3,3 +3,13 @@
 .pointer {
    cursor: pointer;
 }
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+   border: 1px solid #c9302c;;
+}
+
+input.ng-invalid.ng-touched:focus,
+textarea.ng-invalid.ng-touched:focus {
+   box-shadow: 0 1px 1px rgba(#ac2925, .075);
+}
