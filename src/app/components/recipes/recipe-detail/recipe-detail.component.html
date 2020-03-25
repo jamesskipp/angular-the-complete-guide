@@ -23,8 +23,11 @@
                <li><a clickLogger
                      class="pointer"
                      (click)="onClickToShoppingList()">To Shopping List</a></li>
-               <li><a clickLogger="Edit Recipe Link" routerLink="edit" class="pointer">Edit Recipe</a></li>
-               <li><a class="pointer">Delete Recipe</a></li>
+               <li><a clickLogger="Edit Recipe Link"
+                     routerLink="edit"
+                     class="pointer">Edit Recipe</a></li>
+               <li><a class="pointer"
+                  (click)="onClickDelete()">Delete Recipe</a></li>
             </ul>
          </div>
       </div>

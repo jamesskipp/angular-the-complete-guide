@@ -18,6 +18,7 @@ import { RecipeStartComponent } from './components/recipes/recipe-start/recipe-s
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
 import { IngredientDetailComponent } from './components/ingredients/ingredient-detail/ingredient-detail.component';
+import { RecipeService } from './services/recipe.service';
 
 @NgModule({
    declarations: [
@@ -43,7 +44,7 @@ import { IngredientDetailComponent } from './components/ingredients/ingredient-d
       FormsModule,
       ReactiveFormsModule
    ],
-   providers: [],
+   providers: [RecipeService],
    bootstrap: [AppComponent]
 })
 export class AppModule { }
