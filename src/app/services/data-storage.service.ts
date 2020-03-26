@@ -4,8 +4,8 @@ import { Recipe } from '../models/Recipe';
 import { RecipeService } from './recipe.service';
 import { environment } from 'src/environments/environment';
 import { RestAPIConstants } from '../rest-api.constants';
-import { map } from 'rxjs/operators';
-import { RecipesComponent } from '../components/recipes/recipes.component';
+import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
@@ -23,8 +23,8 @@ export class DataStorageService {
       });
   }
 
-  fetchRecipes(): void {
-    this.http
+  fetchRecipes(): Observable<Recipe[]> {
+    return this.http
       .get<Recipe[]>(
         environment.baseUrl + RestAPIConstants.URL_RECIPEBOOK_API.RECIPE
       )
@@ -33,10 +33,10 @@ export class DataStorageService {
           return recipes.map((recipe) => {
             return { ...recipe, ingredients: recipe.ingredients || [] };
           });
+        }),
+        tap((recipes) => {
+          this.recipeService.setRecipes(recipes);
         })
-      )
-      .subscribe((recipes) => {
-        this.recipeService.setRecipes(recipes);
-      });
+      );
   }
 }
