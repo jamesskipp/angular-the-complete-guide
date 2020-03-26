@@ -20,15 +20,30 @@ export class RecipeService {
     private http: HttpClient
   ) {}
 
-  load() {
-    this.fetchRecipes().subscribe((recipes: Recipe[]) => {
-      this.recipes = recipes;
-      this.recipesChanged.next(this.getRecipes());
-    });
+  load(): void {
+    this.fetchRecipes().subscribe(
+      (recipes: Recipe[]) => {
+        this.recipes = recipes;
+        this.recipesChanged.next(this.getRecipes());
+      },
+      (error) => {
+        // this.recipesChanged.error(error);
+        // this.recipes = [
+        //   new Recipe(
+        //     '1',
+        //     'Big Fat Burger',
+        //     'What else you need to say?',
+        //     'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2015/5/5/0/FNM_060115-Fatbuger-Recipe_s4x3.jpg.rend.hgtvcom.826.620.suffix/1431449537270.jpeg',
+        //     []
+        //   ),
+        // ];
+        // this.recipesChanged.next(this.getRecipes());
+      }
+    );
   }
 
   getRecipes(): Recipe[] {
-    return this.recipes.slice();
+    return this.recipes?.slice();
   }
 
   getRecipe(id: number): Recipe {
