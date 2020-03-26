@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
@@ -21,30 +21,30 @@ import { IngredientDetailComponent } from './components/ingredients/ingredient-d
 import { RecipeService } from './services/recipe.service';
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      ShoppingListComponent,
-      RecipeListComponent,
-      RecipeItemComponent,
-      RecipeDetailComponent,
-      HeaderComponent,
-      RecipesComponent,
-      ShoppingEditComponent,
-      DropdownDirective,
-      ClickLoggerDirective,
-      RecipeStartComponent,
-      TruncatePipe,
-      RecipeEditComponent,
-      IngredientDetailComponent
-   ],
-   imports: [
-      BrowserModule,
-      AppRoutingModule,
-      HttpClientModule,
-      FormsModule,
-      ReactiveFormsModule
-   ],
-   providers: [RecipeService],
-   bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    ShoppingListComponent,
+    RecipeListComponent,
+    RecipeItemComponent,
+    RecipeDetailComponent,
+    HeaderComponent,
+    RecipesComponent,
+    ShoppingEditComponent,
+    DropdownDirective,
+    ClickLoggerDirective,
+    RecipeStartComponent,
+    TruncatePipe,
+    RecipeEditComponent,
+    IngredientDetailComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+  providers: [RecipeService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
