@@ -15,6 +15,9 @@ export class RecipeService {
   private recipes: Recipe[];
   recipesChanged = new Subject<Recipe[]>();
 
+  private selectedRecipe: Recipe;
+  selectedRecipeChanged = new Subject<Recipe>();
+
   constructor(
     private shoppingListService: ShoppingListService,
     private http: HttpClient
@@ -50,6 +53,16 @@ export class RecipeService {
     this.recipes = recipes;
     this.recipesChanged.next(this.getRecipes());
     return this.getRecipes();
+  }
+
+  getSelectedRecipe(): Recipe {
+    return this.selectedRecipe;
+  }
+
+  setSelectedRecipe(recipe: Recipe): Recipe {
+    this.selectedRecipe = recipe;
+    this.selectedRecipeChanged.next(this.selectedRecipe);
+    return this.selectedRecipe;
   }
 
   getRecipe(id: number): Recipe {

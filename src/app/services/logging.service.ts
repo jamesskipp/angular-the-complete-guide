@@ -61,9 +61,7 @@ export class LoggingService {
     return postEvents$;
   }
 
-  addEvent({ action, label, component, time, user, data }) {
-    this.events.push(
-      new WebAppEvent(action, label, component, time, user, data)
-    );
+  addEvent(event: WebAppEvent): void {
+    this.events.push(event);
   }
 }

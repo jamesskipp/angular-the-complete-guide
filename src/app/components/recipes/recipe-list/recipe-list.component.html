@@ -1,20 +1,22 @@
 <div class="row">
-   <div class="col-xs-12">
-      <button class="btn btn-success" routerLink="create">New Recipe</button>
-   </div>
+  <div class="col-xs-12">
+    <button class="btn btn-success" routerLink="create">New Recipe</button>
+  </div>
 </div>
-<hr>
+<hr />
 <div class="row">
-   <div class="col-xs-12">
-      <ul class="list-group">
-         <li class="list-group-item pointer"
-            *ngFor="let recipe of recipes"
-            routerLinkActive="active"
-            [clickLogger]="'Link to Recipe '+ recipe.id"
-            [loggerData]="recipe"
-            [routerLink]="recipe.id">
-            <app-recipe-item [recipe]="recipe"></app-recipe-item>
-         </li>
-      </ul>
-   </div>
+  <div class="col-xs-12">
+    <ul class="list-group">
+      <li
+        class="list-group-item pointer"
+        *ngFor="let recipe of recipes"
+        routerLinkActive="active"
+        [clickLogger]="'Link to Recipe ' + recipe.id"
+        [loggerData]="recipe"
+        [routerLink]="recipe.id"
+      >
+        <app-recipe-item [recipe]="recipe"></app-recipe-item>
+      </li>
+    </ul>
+  </div>
 </div>

@@ -1,10 +1,8 @@
-export class WebAppEvent {
-   constructor(
-      private action: string,
-      private label: string,
-      private component: string,
-      private time: number,
-      private user: object,
-      private data: object
-   ) { }
+export interface WebAppEvent {
+  action: string;
+  label: string;
+  componentName: string;
+  time: number;
+  user: object;
+  data: object;
 }
