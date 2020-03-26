@@ -83,10 +83,10 @@
               "browserTarget": "ng4-complete-guide:build:production"
             },
             "test": {
-              "browserTarget": "ng4-complete-guide:build:production"
+              "browserTarget": "ng4-complete-guide:build:test"
             },
             "dev": {
-              "browserTarget": "ng4-complete-guide:build:production"
+              "browserTarget": "ng4-complete-guide:build:dev"
             }
           }
         },

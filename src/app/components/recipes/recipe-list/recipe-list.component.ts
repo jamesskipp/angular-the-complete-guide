@@ -23,7 +23,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
         console.error(error);
       }
     );
-    this.recipeService.load();
+    // this.recipeService.load();
   }
 
   ngOnDestroy(): void {

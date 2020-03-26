@@ -20,4 +20,8 @@ export class HeaderComponent implements OnInit {
   onClickSaveData() {
     this.dataStorageService.storeRecipes();
   }
+
+  onClickFetchData() {
+    this.dataStorageService.fetchRecipes();
+  }
 }
