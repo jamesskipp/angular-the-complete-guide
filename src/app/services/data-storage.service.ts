@@ -29,26 +29,19 @@ export class DataStorageService {
   }
 
   fetchRecipes(): Observable<Recipe[]> {
-    return this.authService.user.pipe(
-      take(1),
-      exhaustMap((user) => {
-        return this.http.get<Recipe[]>(
-          environment.baseUrl + RestAPIConstants.URL_RECIPEBOOK_API.RECIPE,
-          {
-            params: {
-              auth: user.token,
-            },
-          }
-        );
-      }),
-      map((recipes) => {
-        return recipes.map((recipe) => {
-          return { ...recipe, ingredients: recipe.ingredients || [] };
-        });
-      }),
-      tap((recipes) => {
-        this.recipeService.setRecipes(recipes);
-      })
-    );
+    return this.http
+      .get<Recipe[]>(
+        environment.baseUrl + RestAPIConstants.URL_RECIPEBOOK_API.RECIPE
+      )
+      .pipe(
+        map((recipes) => {
+          return recipes.map((recipe) => {
+            return { ...recipe, ingredients: recipe.ingredients || [] };
+          });
+        }),
+        tap((recipes) => {
+          this.recipeService.setRecipes(recipes);
+        })
+      );
   }
 }
