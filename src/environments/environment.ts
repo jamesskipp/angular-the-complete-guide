@@ -7,6 +7,7 @@ import { Environment } from 'src/app/models/Environment';
 export const environment: Environment = {
   production: false,
   baseUrl: null,
+  authUrl: null,
 };
 
 /*
