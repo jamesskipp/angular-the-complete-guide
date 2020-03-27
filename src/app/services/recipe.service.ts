@@ -50,6 +50,7 @@ export class RecipeService {
   }
 
   setRecipes(recipes: Recipe[]): Recipe[] {
+    debugger;
     this.recipes = recipes;
     this.recipesChanged.next(this.getRecipes());
     return this.getRecipes();
@@ -67,6 +68,12 @@ export class RecipeService {
 
   getRecipe(id: number): Recipe {
     return this.recipes[id];
+  }
+
+  findRecipe(id: string): Recipe {
+    return this.getRecipes().find((recipe) => {
+      return recipe.id === id;
+    });
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {

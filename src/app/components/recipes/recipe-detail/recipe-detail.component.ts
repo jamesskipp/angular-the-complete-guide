@@ -18,12 +18,9 @@ export class RecipeDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.data.subscribe((data) => {
-      console.log(data);
+    this.route.params.subscribe((params) => {
+      this.setRecipe(params.id);
     });
-    //  this.route.params.subscribe((params) => {
-    //    this.setRecipe(params.id);
-    //  });
     // Different Approach:
     // this.recipeService.selectedRecipeChanged.subscribe((recipe: Recipe) => {
     //   this.recipe = recipe;
@@ -38,6 +35,7 @@ export class RecipeDetailComponent implements OnInit {
     // this.recipeService.fetchRecipe(id).subscribe((recipe: Recipe) => {
     //   this.recipe = recipe;
     // });
+    this.recipe = this.recipeService.findRecipe(id);
   }
 
   onClickDelete() {
