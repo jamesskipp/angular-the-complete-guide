@@ -1,5 +1,8 @@
 export interface Environment {
   baseUrl: string;
   production: boolean;
-  authUrl: string;
+  auth: {
+    signupUrl: string;
+    loginUrl: string;
+  };
 }

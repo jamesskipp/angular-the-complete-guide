@@ -25,18 +25,17 @@ export class AuthComponent {
 
     const email = form.value.email;
     const password = form.value.password;
-    let authRequest: Observable<AuthResponseData>;
-    if (this.isLoginMode) {
-      // authRequest = this.authService.login(email, password);
-    } else {
-      authRequest = this.authService.signup(email, password);
-    }
+
+    const authMethod = this.isLoginMode
+      ? this.authService.login
+      : this.authService.signup;
 
     this.isLoading = true;
-    authRequest.subscribe(
+    authMethod(email, password).subscribe(
       (response) => {
         console.log(response);
         this.isLoading = false;
+        this.error = null;
       },
       (error) => {
         console.error(error);
