@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { AuthResponseData } from 'src/app/models/AuthResponseData';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-auth',
@@ -31,7 +29,7 @@ export class AuthComponent {
       : this.authService.signup;
 
     this.isLoading = true;
-    authMethod(email, password).subscribe(
+    authMethod.call(this.authService, email, password).subscribe(
       (response) => {
         console.log(response);
         this.isLoading = false;
