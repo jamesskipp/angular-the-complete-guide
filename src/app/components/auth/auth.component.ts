@@ -40,7 +40,7 @@ export class AuthComponent {
       },
       (error) => {
         console.error(error);
-        this.error = 'An error occurred!';
+        this.error = error.message;
         this.isLoading = false;
       }
     );

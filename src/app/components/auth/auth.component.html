@@ -35,7 +35,11 @@
         >
           {{ isLoginMode ? 'Login' : 'Sign Up' }}
         </button>
-        <div class="alert alert-danger" style="margin-top: 10px;" *ngIf="error">
+        <div
+          class="alert alert-danger text-center"
+          style="margin-top: 10px;"
+          *ngIf="error"
+        >
           {{ error }}
         </div>
         <hr />
