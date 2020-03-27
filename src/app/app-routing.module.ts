@@ -7,12 +7,17 @@ import { RecipeDetailComponent } from './components/recipes/recipe-detail/recipe
 import { RecipeStartComponent } from './components/recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
 import { RecipesResolverService } from './services/recipes-resolver.service';
+import { AuthComponent } from './components/auth/auth.component';
 
 const appRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
     redirectTo: '/recipes',
+  },
+  {
+    path: 'welcome',
+    component: AuthComponent,
   },
   {
     path: 'recipes',

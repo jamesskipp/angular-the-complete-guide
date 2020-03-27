@@ -19,6 +19,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
 import { IngredientDetailComponent } from './components/ingredients/ingredient-detail/ingredient-detail.component';
 import { RecipeService } from './services/recipe.service';
+import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { RecipeService } from './services/recipe.service';
     TruncatePipe,
     RecipeEditComponent,
     IngredientDetailComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
