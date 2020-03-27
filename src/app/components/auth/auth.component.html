@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-xs-12 col-lg-4 col-lg-offset-4">
     <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
       <div class="form-group">
         <label for="email">Email</label>
         <input
@@ -34,6 +35,9 @@
         >
           {{ isLoginMode ? 'Login' : 'Sign Up' }}
         </button>
+        <div class="alert alert-danger" style="margin-top: 10px;" *ngIf="error">
+          {{ error }}
+        </div>
         <hr />
         <div class="text-center">
           <a style="width: 100%;" class="pointer" (click)="switchMode()">

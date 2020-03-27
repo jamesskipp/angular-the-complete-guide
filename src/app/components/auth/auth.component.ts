@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class AuthComponent {
   isLoginMode = false;
+  isLoading = false;
+  error: string = null;
 
   constructor(private authService: AuthService) {}
 
@@ -30,12 +32,16 @@ export class AuthComponent {
       authRequest = this.authService.signup(email, password);
     }
 
+    this.isLoading = true;
     authRequest.subscribe(
       (response) => {
         console.log(response);
+        this.isLoading = false;
       },
       (error) => {
         console.error(error);
+        this.error = 'An error occurred!';
+        this.isLoading = false;
       }
     );
   }

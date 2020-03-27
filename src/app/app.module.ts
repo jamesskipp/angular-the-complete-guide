@@ -20,6 +20,7 @@ import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edi
 import { IngredientDetailComponent } from './components/ingredients/ingredient-detail/ingredient-detail.component';
 import { RecipeService } from './services/recipe.service';
 import { AuthComponent } from './components/auth/auth.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AuthComponent } from './components/auth/auth.component';
     RecipeEditComponent,
     IngredientDetailComponent,
     AuthComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
