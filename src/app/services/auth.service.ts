@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable, throwError, Subject } from 'rxjs';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { AuthResponseData } from '../models/AuthResponseData';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from '../models/User';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  user = new Subject<User>();
+  user = new BehaviorSubject<User>(null);
 
   constructor(private http: HttpClient) {}
 

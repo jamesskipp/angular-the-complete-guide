@@ -50,7 +50,6 @@ export class RecipeService {
   }
 
   setRecipes(recipes: Recipe[]): Recipe[] {
-    debugger;
     this.recipes = recipes;
     this.recipesChanged.next(this.getRecipes());
     return this.getRecipes();
