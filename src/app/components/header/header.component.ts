@@ -1,5 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DataStorageService } from 'src/app/services/data-storage.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Subscription } from 'rxjs';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +12,19 @@ import { DataStorageService } from 'src/app/services/data-storage.service';
 export class HeaderComponent implements OnInit {
   @Output() navigate: EventEmitter<string> = new EventEmitter();
 
-  constructor(private dataStorageService: DataStorageService) {}
+  isAuthenticated = false;
+  user$: Subscription;
 
-  ngOnInit() {}
+  constructor(
+    private dataStorageService: DataStorageService,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit() {
+    this.user$ = this.authService.user.subscribe((user: User) => {
+      this.isAuthenticated = Boolean(user && user.token);
+    });
+  }
 
   onClickNavLink(link) {
     this.navigate.emit(link);
@@ -24,4 +37,6 @@ export class HeaderComponent implements OnInit {
   onClickFetchData() {
     this.dataStorageService.fetchRecipes().subscribe();
   }
+
+  onClickLogout() {}
 }

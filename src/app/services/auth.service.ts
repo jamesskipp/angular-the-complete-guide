@@ -39,7 +39,17 @@ export class AuthService {
         password,
         returnSecureToken: true,
       })
-      .pipe(catchError(this.handleError));
+      .pipe(
+        catchError(this.handleError),
+        tap((response) => {
+          this.handleAuth(
+            response.email,
+            response.localId,
+            response.idToken,
+            parseInt(response.expiresIn)
+          );
+        })
+      );
   }
 
   private handleAuth(
