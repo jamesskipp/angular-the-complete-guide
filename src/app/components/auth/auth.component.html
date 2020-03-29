@@ -28,7 +28,8 @@
       </div>
       <div>
         <button
-          class="btn btn-success"
+          class="btn"
+          [ngClass]="isLoginMode ? 'btn-primary' : 'btn-success'"
           style="width: 100%;"
           [disabled]="!authForm.valid"
           type="submit"

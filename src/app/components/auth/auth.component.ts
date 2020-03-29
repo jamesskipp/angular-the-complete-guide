@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent {
-  isLoginMode = false;
+  isLoginMode = true;
   isLoading = false;
   error: string = null;
 

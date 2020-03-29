@@ -13,4 +13,18 @@ export class User {
       return this._token;
     }
   }
+
+  get tokenExpiresIn(): number {
+    if (!this._tokenExpirationDate) {
+      return 0;
+    } else {
+      const tokenExpiresIn =
+        this._tokenExpirationDate.getTime() - new Date().getTime();
+      if (tokenExpiresIn < 0) {
+        return 0;
+      } else {
+        return tokenExpiresIn;
+      }
+    }
+  }
 }

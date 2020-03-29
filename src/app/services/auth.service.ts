@@ -9,9 +9,45 @@ import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  user = new BehaviorSubject<User>(null);
+  private static readonly LOCALSTORAGE_USER_KEY = 'userData';
+
+  private tokenExpirationTimer;
+
+  user = new BehaviorSubject<User>(this.getStoredUser());
+  userSub = this.user.subscribe((user: User) => {
+    this.setStoredUser(user);
+    this.setTokenExpirationTimer(user && user.tokenExpiresIn);
+  });
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  setStoredUser(user: User): void {
+    if (user) {
+      localStorage.setItem(
+        AuthService.LOCALSTORAGE_USER_KEY,
+        JSON.stringify(user)
+      );
+    } else {
+      localStorage.removeItem(AuthService.LOCALSTORAGE_USER_KEY);
+    }
+  }
+
+  getStoredUser(): User {
+    const userDataString = localStorage.getItem(
+      AuthService.LOCALSTORAGE_USER_KEY
+    );
+    const userData = JSON.parse(userDataString);
+    if (!userDataString || !userData) {
+      return null;
+    } else {
+      return new User(
+        userData.email,
+        userData.id,
+        userData._token,
+        new Date(userData._tokenExpirationDate)
+      );
+    }
+  }
 
   signup(email: string, password: string): Observable<AuthResponseData> {
     return this.http
@@ -53,9 +89,36 @@ export class AuthService {
       );
   }
 
+  autoLogin() {
+    // this.user.next(user);
+  }
+
+  autoLogout(expirationDuration: number): void {
+    this.setTokenExpirationTimer(expirationDuration);
+  }
+
+  setTokenExpirationTimer(expirationDuration: number): void {
+    if (expirationDuration != null) {
+      this.tokenExpirationTimer = setTimeout(() => {
+        alert('Your session has expired. Please login again.');
+        this.logout();
+      }, expirationDuration);
+    } else {
+      this.clearTokenExpirationTimer();
+    }
+  }
+
+  clearTokenExpirationTimer(): void {
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+    }
+    this.tokenExpirationTimer = null;
+  }
+
   logout(): void {
     this.user.next(null);
     this.router.navigate(['/welcome']);
+    this.clearTokenExpirationTimer();
   }
 
   private handleAuth(
