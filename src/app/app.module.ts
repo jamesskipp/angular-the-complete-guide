@@ -23,6 +23,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AlertComponent } from './components/alert/alert.component';
+import { PlaceholderDirective } from './directives/placeholder/placeholder.directive';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AlertComponent } from './components/alert/alert.component';
     AuthComponent,
     LoadingSpinnerComponent,
     AlertComponent,
+    PlaceholderDirective,
   ],
   imports: [
     BrowserModule,
