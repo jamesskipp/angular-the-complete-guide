@@ -44,4 +44,8 @@ export class AuthComponent {
       }
     );
   }
+
+  onClose() {
+    this.error = null;
+  }
 }

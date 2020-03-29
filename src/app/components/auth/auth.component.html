@@ -43,7 +43,11 @@
         >
           {{ error }}
         </div> -->
-        <app-alert [message]="error" *ngIf="error"></app-alert>
+        <app-alert
+          [message]="error"
+          *ngIf="error"
+          (close)="onClose()"
+        ></app-alert>
         <hr />
         <div class="text-center">
           <a style="width: 100%;" class="pointer" (click)="switchMode()">
