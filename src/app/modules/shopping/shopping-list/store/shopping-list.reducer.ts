@@ -1,5 +1,6 @@
 import { Ingredient } from '../../../ingredients/models/ingredient.model';
-import { ADD_INGREDIENT, ShoppingListAction } from './shopping-list.actions';
+import * as ShoppingListActions from './shopping-list.actions';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 const initialState = {
   ingredients: [
@@ -10,10 +11,10 @@ const initialState = {
 
 export function shoppingListReducer(
   state = initialState,
-  action: ShoppingListAction
+  action: ShoppingListActions.AddIngredient
 ): object {
   switch (action.type) {
-    case ADD_INGREDIENT:
+    case ShoppingListActions.ADD_INGREDIENT:
       return {
         ...state,
         ingredients: [...state.ingredients, action.payload],
