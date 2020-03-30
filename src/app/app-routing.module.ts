@@ -8,6 +8,10 @@ const appRoutes: Routes = [
     redirectTo: '/recipes',
   },
   {
+    path: 'recipes',
+    loadChildren: './modules/recipes/recipes.module#RecipesModule',
+  },
+  {
     path: '**',
     redirectTo: '',
   },
