@@ -1,14 +1,21 @@
 <div class="row">
-   <div class="col-xs-10">
-      <app-shopping-edit></app-shopping-edit>
-      <hr>
-      <div class="list-group">
-         <a *ngFor="let ingredient of ingredients; let i = index"
-            style="cursor: pointer"
-            class="list-group-item"
-            (click)="onClickEditItem(i)">
-            <app-ingredient-detail [ingredient]="ingredient"></app-ingredient-detail>
-         </a>
-      </div>
-   </div>
+  <div class="col-xs-10">
+    <app-shopping-edit></app-shopping-edit>
+    <hr />
+    <div class="list-group">
+      <a
+        *ngFor="
+          let ingredient of (ingredients | async).ingredients;
+          let i = index
+        "
+        style="cursor: pointer;"
+        class="list-group-item"
+        (click)="onClickEditItem(i)"
+      >
+        <app-ingredient-detail
+          [ingredient]="ingredient"
+        ></app-ingredient-detail>
+      </a>
+    </div>
+  </div>
 </div>
