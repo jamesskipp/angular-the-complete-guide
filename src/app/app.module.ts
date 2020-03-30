@@ -9,7 +9,6 @@ import { LoggingModule } from './modules/logging/logging.module';
 import { ShopppingModule } from './modules/shopping/shopping.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { CoreModule } from './modules/core/core.module';
-import { AuthModule } from './modules/auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -18,7 +17,6 @@ import { AuthModule } from './modules/auth/auth.module';
     HttpClientModule,
     CoreModule,
     SharedModule,
-    AuthModule,
     LoggingModule,
     ShopppingModule,
     AppRoutingModule,

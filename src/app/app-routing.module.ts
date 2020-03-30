@@ -9,7 +9,20 @@ const appRoutes: Routes = [
   },
   {
     path: 'recipes',
-    loadChildren: './modules/recipes/recipes.module#RecipesModule',
+    loadChildren: () =>
+      import('./modules/recipes/recipes.module').then((m) => m.RecipesModule),
+  },
+  {
+    path: 'welcome',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'shopping-list',
+    loadChildren: () =>
+      import('./modules/shopping/shopping.module').then(
+        (m) => m.ShopppingModule
+      ),
   },
   {
     path: '**',
