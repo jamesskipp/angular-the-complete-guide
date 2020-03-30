@@ -1,6 +1,5 @@
 import { Ingredient } from '../../../ingredients/models/ingredient.model';
 import * as ShoppingListActions from './shopping-list.actions';
-import { Action } from 'rxjs/internal/scheduler/Action';
 
 const initialState = {
   ingredients: [
@@ -23,6 +22,26 @@ export function shoppingListReducer(
       return {
         ...state,
         ingredients: [...state.ingredients, ...action.payload],
+      };
+    case ShoppingListActions.UPDATE_INGREDIENTS:
+      const ingredient = state.ingredients[action.payload.index];
+      const updatedIngredient = {
+        ...ingredient,
+        ...action.payload.ingredient,
+      };
+      const updatedIngredients = [...state.ingredients];
+      updatedIngredients[action.payload.index] = updatedIngredient;
+
+      return {
+        ...state,
+        ingredients: state.ingredients,
+      };
+    case ShoppingListActions.DELETE_INGREDIENT:
+      return {
+        ...state,
+        ingredients: state.ingredients.filter(
+          (ingredient, index) => index !== action.payload
+        ),
       };
     default:
       return state;
