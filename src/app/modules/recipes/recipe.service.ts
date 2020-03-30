@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { RestAPIConstants } from '../../rest-api.constants';
 import { environment } from 'src/environments/environment';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class RecipeService {
   private URLS = RestAPIConstants.URL_RECIPEBOOK_API;
 

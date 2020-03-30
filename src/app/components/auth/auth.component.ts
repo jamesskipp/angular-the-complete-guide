@@ -7,8 +7,8 @@ import {
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { AlertComponent } from '../alert/alert.component';
-import { PlaceholderDirective } from 'src/app/directives/placeholder/placeholder.directive';
+import { AlertComponent } from '../../modules/shared/components/alert/alert.component';
+import { PlaceholderDirective } from 'src/app/modules/shared/directives/placeholder/placeholder.directive';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -56,7 +56,6 @@ export class AuthComponent implements OnDestroy {
       (response) => {
         this.isLoading = false;
         this.error = null;
-        console.log(response);
         this.router.navigate(['/recipes']);
       },
       (error) => {

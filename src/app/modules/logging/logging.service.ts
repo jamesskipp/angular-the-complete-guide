@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { WebAppEvent } from './WebAppEvent';
 import { environment } from 'src/environments/environment';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class LoggingService {
   private events: WebAppEvent[] = [];
 
