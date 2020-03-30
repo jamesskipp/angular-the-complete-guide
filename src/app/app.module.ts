@@ -10,7 +10,7 @@ import { RecipesModule } from './modules/recipes/recipes.module';
 import { LoggingModule } from './modules/logging/logging.module';
 import { ShopppingModule } from './modules/shopping/shopping.module';
 import { SharedModule } from './modules/shared/shared.module';
-import { CoreModule } from './core.module';
+import { CoreModule } from './modules/core/core.module';
 import { AuthModule } from './modules/auth/auth.module';
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { Environment } from '../app/models/Environment';
+import { Environment } from '../app/modules/shared/models/environment.model';
 
 const firebaseKey = 'AIzaSyDrNcw1RPBVf9zoZVopMYY3mFNWYhQGGYI';
 const firebaseUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:';

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RestAPIConstants } from '../../rest-api.constants';
+import { RestAPIConstants } from '../shared/utils/rest-api.constants';
 import { Observable } from 'rxjs';
 import { WebAppEvent } from './WebAppEvent';
 import { environment } from 'src/environments/environment';

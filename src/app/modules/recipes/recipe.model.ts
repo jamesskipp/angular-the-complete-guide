@@ -1,4 +1,4 @@
-import { Ingredient } from '../ingredients/ingredient.model';
+import { Ingredient } from '../ingredients/models/ingredient.model';
 
 export class Recipe {
   constructor(

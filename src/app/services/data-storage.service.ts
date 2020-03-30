@@ -3,10 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Recipe } from '../modules/recipes/recipe.model';
 import { RecipeService } from '../modules/recipes/recipe.service';
 import { environment } from 'src/environments/environment';
-import { RestAPIConstants } from '../rest-api.constants';
+import { RestAPIConstants } from '../modules/shared/utils/rest-api.constants';
 import { map, tap, take, exhaustMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
+import { AuthService } from '../modules/auth/services/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {

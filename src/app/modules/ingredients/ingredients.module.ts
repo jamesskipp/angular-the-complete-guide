@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IngredientDetailComponent } from './ingredient-detail/ingredient-detail.component';
+import { IngredientDetailComponent } from './components/ingredient-detail/ingredient-detail.component';
 
 @NgModule({
   declarations: [IngredientDetailComponent],

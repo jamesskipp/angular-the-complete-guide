@@ -4,7 +4,7 @@ import { LoadingSpinnerComponent } from 'src/app/modules/shared/components/loadi
 import { PlaceholderDirective } from 'src/app/modules/shared/directives/placeholder/placeholder.directive';
 import { DropdownDirective } from 'src/app/modules/shared/directives/dropdown/dropdown.directive';
 import { CommonModule } from '@angular/common';
-import { TruncatePipe } from 'src/app/pipes/truncate.pipe';
+import { TruncatePipe } from 'src/app/modules/shared/pipes/truncate.pipe';
 
 @NgModule({
   declarations: [

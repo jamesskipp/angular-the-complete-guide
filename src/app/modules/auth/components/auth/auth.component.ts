@@ -5,9 +5,9 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 import { Router } from '@angular/router';
-import { AlertComponent } from '../../modules/shared/components/alert/alert.component';
+import { AlertComponent } from '../../../shared/components/alert/alert.component';
 import { PlaceholderDirective } from 'src/app/modules/shared/directives/placeholder/placeholder.directive';
 import { Subscription } from 'rxjs';
 

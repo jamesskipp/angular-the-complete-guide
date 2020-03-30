@@ -6,9 +6,9 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { DataStorageService } from 'src/app/services/data-storage.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 import { Subscription } from 'rxjs';
-import { User } from 'src/app/models/User';
+import { User } from 'src/app/modules/auth/models/user.model';
 
 @Component({
   selector: 'app-header',

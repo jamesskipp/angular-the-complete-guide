@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AuthComponent } from 'src/app/components/auth/auth.component';
+import { AuthComponent } from 'src/app/modules/auth/components/auth/auth.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
