@@ -1,15 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormControlDirective,
-  FormArray,
-} from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { RecipeService } from 'src/app/modules/recipes/services/recipe.service';
-import { Recipe } from 'src/app/modules/recipes/models/recipe.model';
-import { generate } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -32,14 +24,11 @@ export class RecipeEditComponent implements OnInit {
       this.id = params.id;
       this.editMode = params.id != null;
 
+      debugger;
       if (this.editMode) {
-        this.recipeService.fetchRecipe(this.id).subscribe((recipe) => {
-          this.initForm(recipe);
-        });
+        this.initForm(this.recipeService.findRecipe(this.id) || {});
       }
     });
-
-    this.initForm({});
   }
 
   private async initForm(recipe) {

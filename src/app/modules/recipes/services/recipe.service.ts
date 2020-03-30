@@ -6,6 +6,8 @@ import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { RestAPIConstants } from '../../shared/utils/rest-api.constants';
 import { environment } from 'src/environments/environment';
+import { Store } from '@ngrx/store';
+import * as ShoppingListActions from '../../shopping/shopping-list/store/shopping-list.actions';
 
 @Injectable({ providedIn: 'root' })
 export class RecipeService {
@@ -19,7 +21,8 @@ export class RecipeService {
 
   constructor(
     private shoppingListService: ShoppingListService,
-    private http: HttpClient
+    private http: HttpClient,
+    private store: Store<{ shoppingList: { ingredients: Ingredient[] } }>
   ) {}
 
   load(): void {
@@ -59,8 +62,8 @@ export class RecipeService {
     });
   }
 
-  addIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.shoppingListService.addIngredients(ingredients);
+  addIngredientsToShoppingList(ingredients: Ingredient[]): void {
+    this.store.dispatch(new ShoppingListActions.AddIngredients(ingredients));
   }
 
   fetchRecipes(): Observable<Recipe[]> {
