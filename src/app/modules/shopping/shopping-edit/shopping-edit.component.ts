@@ -13,7 +13,7 @@ import * as ShoppingListActions from '../shopping-list/store/shopping-list.actio
   styleUrls: ['./shopping-edit.component.css'],
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
-  editingSubscription: Subscription;
+  subscription: Subscription;
   editMode = false;
   editedItemIndex: number;
   editedItem: Ingredient;
@@ -26,25 +26,28 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.editingSubscription = this.shoppingListService.startedEditing.subscribe(
-      (index: number) => {
-        this.editedItemIndex = index;
-        this.editMode = true;
-        this.editedItem = this.shoppingListService.getIngredient(
-          this.editedItemIndex
-        );
-        this.slForm.setValue({
-          name: this.editedItem.name,
-          amount: this.editedItem.amount,
-          unit: this.editedItem.unit,
-          isAbsoluteUnit: !this.editedItem.unitIsRelative,
-        });
-      }
-    );
+    this.subscription = this.store
+      .select('shoppingList')
+      .subscribe((stateData) => {
+        if (stateData.editedIngredientIndex > -1) {
+          this.editMode = true;
+          this.editedItem = stateData.editedIngredient;
+          this.slForm.setValue({
+            name: this.editedItem.name,
+            amount: this.editedItem.amount,
+            unit: this.editedItem.unit,
+            isAbsoluteUnit: !this.editedItem.unitIsRelative,
+          });
+        } else {
+          this.slForm.reset();
+          this.editedItem = null;
+          this.editMode = false;
+        }
+      });
   }
 
   ngOnDestroy(): void {
-    this.editingSubscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
   onSubmit(form: NgForm): void {
@@ -78,6 +81,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     this.slForm.reset({
       isAbsoluteUnit: true,
     });
+    this.store.dispatch(new ShoppingListActions.StopEdit());
   }
 
   onClickDelete() {
