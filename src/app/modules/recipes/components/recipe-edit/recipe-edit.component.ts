@@ -7,8 +7,8 @@ import {
   FormControlDirective,
   FormArray,
 } from '@angular/forms';
-import { RecipeService } from 'src/app/modules/recipes/recipe.service';
-import { Recipe } from 'src/app/modules/recipes/recipe.model';
+import { RecipeService } from 'src/app/modules/recipes/services/recipe.service';
+import { Recipe } from 'src/app/modules/recipes/models/recipe.model';
 import { generate } from 'rxjs';
 
 @Component({

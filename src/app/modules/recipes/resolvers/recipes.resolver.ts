@@ -4,10 +4,10 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router';
-import { Recipe } from './recipe.model';
-import { DataStorageService } from '../../services/data-storage.service';
+import { Recipe } from '../models/recipe.model';
+import { DataStorageService } from '../../../services/data-storage.service';
 import { Observable } from 'rxjs';
-import { RecipeService } from './recipe.service';
+import { RecipeService } from '../services/recipe.service';
 
 @Injectable({ providedIn: 'root' })
 export class RecipesResolver implements Resolve<Recipe[]> {

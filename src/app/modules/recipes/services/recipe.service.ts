@@ -1,10 +1,10 @@
-import { Recipe } from './recipe.model';
+import { Recipe } from '../models/recipe.model';
 import { Injectable } from '@angular/core';
-import { Ingredient } from '../ingredients/models/ingredient.model';
-import { ShoppingListService } from '../shopping/shopping-list/shopping-list.service';
+import { Ingredient } from '../../ingredients/models/ingredient.model';
+import { ShoppingListService } from '../../shopping/shopping-list/shopping-list.service';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { RestAPIConstants } from '../shared/utils/rest-api.constants';
+import { RestAPIConstants } from '../../shared/utils/rest-api.constants';
 import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
