@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 import { User } from 'src/app/modules/auth/models/user.model';
 import * as fromApp from 'src/app/store/app.reducer';
 import { Store } from '@ngrx/store';
+import * as AuthActions from 'src/app/modules/auth/store/auth.actions';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -56,6 +57,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onClickLogout(): void {
-    this.authService.logout();
+    this.store.dispatch(new AuthActions.Logout());
   }
 }
