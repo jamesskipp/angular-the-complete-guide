@@ -12,6 +12,7 @@ import { CoreModule } from './modules/core/core.module';
 import { StoreModule } from '@ngrx/store';
 import * as fromApp from './store/app.reducer';
 import { AuthEffects } from './modules/auth/store/auth.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],

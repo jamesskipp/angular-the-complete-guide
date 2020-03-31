@@ -6,8 +6,6 @@ import {
   OnInit,
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from 'src/app/modules/auth/services/auth.service';
-import { Router } from '@angular/router';
 import { AlertComponent } from '../../../shared/components/alert/alert.component';
 import { PlaceholderDirective } from 'src/app/modules/shared/directives/placeholder/placeholder.directive';
 import { Subscription } from 'rxjs';
@@ -28,24 +26,29 @@ export class AuthComponent implements OnDestroy, OnInit {
   @ViewChild(PlaceholderDirective) alertHost: PlaceholderDirective;
 
   private closeSub: Subscription;
+  private subscription: Subscription;
 
   constructor(
-    private authService: AuthService,
-    private router: Router,
     private componentFactoryResolver: ComponentFactoryResolver,
     private store: Store<fromApp.AppState>
   ) {}
 
   ngOnInit(): void {
-    this.store.select('auth').subscribe((authState) => {
+    this.subscription = this.store.select('auth').subscribe((authState) => {
       this.isLoading = authState.loading;
       this.error = authState.authError;
+      if (this.error) {
+        this.showErrorAlert(this.error);
+      }
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.closeSub) {
       this.closeSub.unsubscribe();
+    }
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 

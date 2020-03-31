@@ -24,7 +24,6 @@ export class RecipeEditComponent implements OnInit {
       this.id = params.id;
       this.editMode = params.id != null;
 
-      debugger;
       if (this.editMode) {
         this.initForm(this.recipeService.findRecipe(this.id) || {});
       }

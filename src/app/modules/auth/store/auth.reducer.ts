@@ -40,8 +40,8 @@ export function authReducer(
     case AuthActions.LOGIN_FAIL:
       return {
         ...state,
-        authError: action.payload,
         user: null,
+        authError: action.payload,
         loading: false,
       };
     default:

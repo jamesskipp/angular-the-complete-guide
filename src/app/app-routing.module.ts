@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { AuthGuard } from './modules/auth/guards/auth.guard';
 
 const appRoutes: Routes = [
   {
@@ -9,8 +10,12 @@ const appRoutes: Routes = [
   },
   {
     path: 'recipes',
-    loadChildren: () =>
-      import('./modules/recipes/recipes.module').then((m) => m.RecipesModule),
+    canActivate: [AuthGuard],
+    loadChildren: () => {
+      return import('./modules/recipes/recipes.module').then(
+        (m) => m.RecipesModule
+      );
+    },
   },
   {
     path: 'welcome',
@@ -32,7 +37,10 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules }),
+    RouterModule.forRoot(appRoutes, {
+      preloadingStrategy: PreloadAllModules,
+      enableTracing: true,
+    }),
   ],
   exports: [RouterModule],
 })
