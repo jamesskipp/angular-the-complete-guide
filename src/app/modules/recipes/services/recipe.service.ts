@@ -21,7 +21,6 @@ export class RecipeService {
   selectedRecipeChanged = new Subject<Recipe>();
 
   constructor(
-    private shoppingListService: ShoppingListService,
     private http: HttpClient,
     private store: Store<fromShoppingList.AppState>
   ) {}
