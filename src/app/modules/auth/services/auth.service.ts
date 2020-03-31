@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { AuthResponseData } from '../models/auth-response-data.model';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
@@ -15,12 +15,6 @@ export class AuthService {
   private static readonly LOCALSTORAGE_USER_KEY = 'userData';
 
   private tokenExpirationTimer;
-
-  user = new BehaviorSubject<User>(this.getStoredUser());
-  userSub = this.user.subscribe((user: User) => {
-    this.setStoredUser(user);
-    this.setTokenExpirationTimer(user && user.tokenExpiresIn);
-  });
 
   constructor(
     private http: HttpClient,
