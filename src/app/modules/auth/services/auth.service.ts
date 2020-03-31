@@ -6,6 +6,9 @@ import { AuthResponseData } from '../models/auth-response-data.model';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as fromApp from 'src/app/store/app.reducer';
+import * as AuthActions from 'src/app/modules/auth/store/auth.actions';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -19,7 +22,11 @@ export class AuthService {
     this.setTokenExpirationTimer(user && user.tokenExpiresIn);
   });
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private store: Store<fromApp.AppState>
+  ) {}
 
   setStoredUser(user: User): void {
     if (user) {
@@ -40,12 +47,13 @@ export class AuthService {
     if (!userDataString || !userData) {
       return null;
     } else {
-      return new User(
+      const user = new User(
         userData.email,
         userData.id,
         userData._token,
         new Date(userData._tokenExpirationDate)
       );
+      return user && user.token ? user : null;
     }
   }
 
@@ -90,7 +98,17 @@ export class AuthService {
   }
 
   autoLogin() {
-    // this.user.next(user);
+    const user = this.getStoredUser();
+    if (user) {
+      this.store.dispatch(
+        new AuthActions.Login({
+          email: user.email,
+          userId: user.id,
+          token: user.token,
+          expirationDate: user.tokenExpirationDate,
+        })
+      );
+    }
   }
 
   autoLogout(expirationDuration: number): void {
@@ -116,7 +134,7 @@ export class AuthService {
   }
 
   logout(): void {
-    this.user.next(null);
+    this.store.dispatch(new AuthActions.Logout());
     this.router.navigate(['/welcome']);
     this.clearTokenExpirationTimer();
   }
@@ -134,7 +152,14 @@ export class AuthService {
       new Date(new Date().getTime() + tokenExpiresIn * 1000)
     );
 
-    this.user.next(user);
+    this.store.dispatch(
+      new AuthActions.Login({
+        email: user.email,
+        userId: user.id,
+        token: user.token,
+        expirationDate: user.tokenExpirationDate,
+      })
+    );
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {

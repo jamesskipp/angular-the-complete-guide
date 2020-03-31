@@ -14,6 +14,10 @@ export class User {
     }
   }
 
+  get tokenExpirationDate(): Date {
+    return new Date(this._tokenExpirationDate);
+  }
+
   get tokenExpiresIn(): number {
     if (!this._tokenExpirationDate) {
       return 0;
