@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { RestAPIConstants } from '../../shared/utils/rest-api.constants';
 import { environment } from 'src/environments/environment';
 import { Store } from '@ngrx/store';
-import * as fromShoppingList from '../../shopping/shopping-list/store/shopping-list.reducer';
+import * as fromApp from 'src/app/store/app.reducer';
 import * as ShoppingListActions from '../../shopping/shopping-list/store/shopping-list.actions';
 
 @Injectable({ providedIn: 'root' })
@@ -22,7 +22,7 @@ export class RecipeService {
 
   constructor(
     private http: HttpClient,
-    private store: Store<fromShoppingList.AppState>
+    private store: Store<fromApp.AppState>
   ) {}
 
   load(): void {
