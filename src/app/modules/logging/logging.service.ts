@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 import * as fromApp from 'src/app/store/app.reducer';
 import { Store } from '@ngrx/store';
 import { User } from '../auth/models/user.model';
-import { Router } from '@angular/router';
+import { Router, Event, NavigationEnd } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class LoggingService {
@@ -36,6 +36,15 @@ export class LoggingService {
     this.store.select('auth').subscribe((authState) => {
       this.user = authState.user;
       console.log(authState);
+    });
+
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.addEvent({
+          action: 'view',
+          label: `page '${event.urlAfterRedirects}' viewed`,
+        });
+      }
     });
   }
 
@@ -78,14 +87,14 @@ export class LoggingService {
   addEvent(event: {
     action: string;
     label: string;
-    component: {
+    component?: {
       name: string;
       parentName: string;
       innerText: string;
       innerHTML: string;
       styles: object;
     };
-    data: object;
+    data?: object;
   }): void {
     this.events.push({
       ...event,
@@ -95,6 +104,7 @@ export class LoggingService {
       page: {
         url: this.router.url,
         location: window.location.href,
+        title: document.title,
       },
     });
   }
