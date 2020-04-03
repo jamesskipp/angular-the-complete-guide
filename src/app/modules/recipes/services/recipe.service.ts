@@ -67,12 +67,14 @@ export class RecipeService {
   }
 
   fetchRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(environment.baseUrl + this.URLS.RECIPE);
+    return this.http.get<Recipe[]>(
+      environment.urls.recipe.base + this.URLS.RECIPE
+    );
   }
 
   fetchRecipe(id: string): Observable<Recipe> {
     return this.http.get<Recipe>(
-      environment.baseUrl + this.URLS.RECIPE + '/' + id
+      environment.urls.recipe.base + this.URLS.RECIPE + '/' + id
     );
   }
 

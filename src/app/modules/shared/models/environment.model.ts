@@ -1,8 +1,15 @@
 export interface Environment {
-  baseUrl: string;
   production: boolean;
-  auth: {
-    signupUrl: string;
-    loginUrl: string;
+  urls: {
+    recipe: {
+      base: string;
+    };
+    logging: {
+      base: string;
+    };
+    auth: {
+      signUp: string;
+      login: string;
+    };
   };
 }

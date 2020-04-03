@@ -20,7 +20,8 @@ export class DataStorageService {
     const recipes = this.recipeService.getRecipes();
     this.http
       .put<Recipe[]>(
-        environment.baseUrl + RestAPIConstants.URL_RECIPEBOOK_API.RECIPE,
+        environment.urls.recipe.base +
+          RestAPIConstants.URL_RECIPEBOOK_API.RECIPE,
         recipes
       )
       .subscribe((recipes) => {
@@ -31,7 +32,8 @@ export class DataStorageService {
   fetchRecipes(): Observable<Recipe[]> {
     return this.http
       .get<Recipe[]>(
-        environment.baseUrl + RestAPIConstants.URL_RECIPEBOOK_API.RECIPE
+        environment.urls.recipe.base +
+          RestAPIConstants.URL_RECIPEBOOK_API.RECIPE
       )
       .pipe(
         map((recipes) => {

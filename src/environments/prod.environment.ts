@@ -5,9 +5,16 @@ const firebaseUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:';
 
 export const environment: Environment = {
   production: true,
-  baseUrl: 'https://ng-course-recipe-book-eb544.firebaseio.com',
-  auth: {
-    signupUrl: `${firebaseUrl}signUp?key=${firebaseKey}`,
-    loginUrl: `${firebaseUrl}signInWithPassword?key=${firebaseKey}`,
+  urls: {
+    recipe: {
+      base: 'https://ng-course-recipe-book-eb544.firebaseio.com',
+    },
+    logging: {
+      base: 'localhost:8080',
+    },
+    auth: {
+      signUp: `${firebaseUrl}signUp?key=${firebaseKey}`,
+      login: `${firebaseUrl}signInWithPassword?key=${firebaseKey}`,
+    },
   },
 };

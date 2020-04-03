@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as fromApp from 'src/app/store/app.reducer';
 import * as AuthActions from 'src/app/modules/auth/store/auth.actions';
@@ -12,11 +10,7 @@ export class AuthService {
 
   private tokenExpirationTimer;
 
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private store: Store<fromApp.AppState>
-  ) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   setStoredUser(user: User): void {
     if (user) {
@@ -47,29 +41,11 @@ export class AuthService {
     }
   }
 
-  autoLogin(): void {
-    const user = this.getStoredUser();
-    if (user) {
-      this.store.dispatch(
-        new AuthActions.AuthenticateSuccess({
-          email: user.email,
-          userId: user.id,
-          token: user.token,
-          expirationDate: user.tokenExpirationDate,
-        })
-      );
-    }
-  }
-
-  autoLogout(expirationDuration: number): void {
-    this.setTokenExpirationTimer(expirationDuration);
-  }
-
   setTokenExpirationTimer(expirationDuration: number): void {
     if (expirationDuration != null) {
       this.tokenExpirationTimer = setTimeout(() => {
         alert('Your session has expired. Please login again.');
-        this.logout();
+        this.store.dispatch(new AuthActions.Logout());
       }, expirationDuration);
     } else {
       this.clearTokenExpirationTimer();
@@ -79,13 +55,7 @@ export class AuthService {
   clearTokenExpirationTimer(): void {
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
+      this.tokenExpirationTimer = null;
     }
-    this.tokenExpirationTimer = null;
-  }
-
-  logout(): void {
-    this.store.dispatch(new AuthActions.Logout());
-    this.router.navigate(['/welcome']);
-    this.clearTokenExpirationTimer();
   }
 }
